@@ -10,7 +10,9 @@ public class ProduitService {
     private List<Produit> liste = new ArrayList<>();
 
     public Produit ajouterProduit(String nom, double prix){
-        return null;
+        Produit produit = new Produit(nom, prix);
+        liste.add(produit);
+        return produit;
     }
     public Produit trouverUnProduitParId(Long id){
         return  null;

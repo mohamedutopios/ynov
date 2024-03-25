@@ -15,7 +15,7 @@ public class Produit {
 
     private Double price;
 
-    public Produit(Long id, String name, Double price) {
+    public Produit(String name, Double price) {
         this.id = count++;
         this.name = name;
         this.price = price;
