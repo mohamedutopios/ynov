@@ -1,15 +1,16 @@
 package com.example.ynovv.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book {
 
     @Id
@@ -34,4 +35,13 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name="genre_id"))
     private Set<Genre> genres = new HashSet<>();
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author=" + author +
+                ", genres=" + genres +
+                '}';
+    }
 }

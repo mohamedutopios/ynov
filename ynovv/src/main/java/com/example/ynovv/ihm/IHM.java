@@ -41,13 +41,13 @@ public class IHM implements CommandLineRunner {
 
        // delete();
 
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Donne moi un mot Jean Louis : ");
-        String test = sc.next();
-        System.out.println("Donne moi ton age Jean Louis : ");
+      //  Scanner sc = new Scanner(System.in);
+        //System.out.println("Donne moi un mot Jean Louis : ");
+        //String test = sc.next();
+/*        System.out.println("Donne moi ton age Jean Louis : ");
         Integer age = sc.nextInt();
         System.out.println("Le mot est : " + test);
-        System.out.println("Ton age est : " + age);
+        System.out.println("Ton age est : " + age);*/
 
     }
 

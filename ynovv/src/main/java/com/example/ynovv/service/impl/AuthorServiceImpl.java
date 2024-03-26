@@ -5,6 +5,7 @@ import com.example.ynovv.repository.AuthorRepository;
 import com.example.ynovv.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -38,9 +39,17 @@ public class AuthorServiceImpl implements AuthorService {
 
     }
 
+
     @Override
+    @Transactional
     public void deleteById(Long id) {
-        Author author = authorRepository.findById(id).orElseThrow(()-> new RuntimeException("Author not found"));
+        Author author = authorRepository.findById(id).orElseThrow(() -> new RuntimeException("Author not found"));
+        author.getBooks().forEach(book -> {
+            book.setAuthor(null);
+        });
+        author.getBooks().clear();
+        authorRepository.save(author);
         authorRepository.delete(author);
     }
+
 }
