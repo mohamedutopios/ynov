@@ -4,6 +4,7 @@ import org.example.model.Produit;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class ProduitService {
 
@@ -16,7 +17,10 @@ public class ProduitService {
     }
     public Produit trouverUnProduitParId(Long id){
 
-        return  null;
+        return liste.stream()
+                .filter(produit -> produit.getId() == id)
+                .findFirst()
+                .orElseThrow(()-> new NoSuchElementException("Produit avec Id: " + id + "n'existe pas"));
     }
     public Produit mettreAJourProduit(Long id, String nom, double prix){
         return null;

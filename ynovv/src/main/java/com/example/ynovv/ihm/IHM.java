@@ -19,7 +19,6 @@ import java.util.Scanner;
 @Component
 public class IHM implements CommandLineRunner {
 
-
     @Autowired
     private AuthorService authorService;
 
@@ -31,8 +30,8 @@ public class IHM implements CommandLineRunner {
 
     @Autowired
     private PublisherService publisherService;
-    @Autowired
-    private BookRepository bookRepository;
+
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -40,7 +39,16 @@ public class IHM implements CommandLineRunner {
 
         // read();
 
-        delete();
+       // delete();
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Donne moi un mot Jean Louis : ");
+        String test = sc.next();
+        System.out.println("Donne moi ton age Jean Louis : ");
+        Integer age = sc.nextInt();
+        System.out.println("Le mot est : " + test);
+        System.out.println("Ton age est : " + age);
+
     }
 
     private void create(){
