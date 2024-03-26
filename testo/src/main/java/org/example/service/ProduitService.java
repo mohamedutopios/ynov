@@ -15,6 +15,7 @@ public class ProduitService {
         return produit;
     }
     public Produit trouverUnProduitParId(Long id){
+
         return  null;
     }
     public Produit mettreAJourProduit(Long id, String nom, double prix){
@@ -22,7 +23,10 @@ public class ProduitService {
     }
     public void supprimeUnProduitParId(Long id){
 
+        liste.removeIf(produit -> produit.getId() == id);
+
     }
+
     public List<Produit> listeProduits(){
         return null;
     }
