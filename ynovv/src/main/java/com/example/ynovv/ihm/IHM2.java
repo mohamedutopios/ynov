@@ -30,7 +30,7 @@ public class IHM2 implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        run();
+       // run();
     }
 
     private void run() {

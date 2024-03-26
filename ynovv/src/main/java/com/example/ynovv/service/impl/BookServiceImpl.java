@@ -44,4 +44,8 @@ public class BookServiceImpl implements BookService {
         bookRepository.delete(book);
     }
 
+    @Override
+    public void test(String genreName) {
+        System.out.println(bookRepository.findByGenreName(genreName));
+    }
 }

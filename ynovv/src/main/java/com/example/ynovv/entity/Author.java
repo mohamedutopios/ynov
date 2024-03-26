@@ -1,14 +1,17 @@
 package com.example.ynovv.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Author {
 
     @Id
@@ -17,8 +20,17 @@ public class Author {
 
     private String name;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "author",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Book> books = new HashSet<>();
+/*
+    @OneToMany(mappedBy = "author",fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Set<Book> books = new HashSet<>();*/
 
-
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

@@ -52,4 +52,8 @@ public class AuthorServiceImpl implements AuthorService {
         authorRepository.delete(author);
     }
 
+    @Override
+    public void test() {
+        System.out.println(authorRepository.findAuthorsWithoutBooks());
+    }
 }

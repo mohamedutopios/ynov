@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 @Component
 public class IHM implements CommandLineRunner {
@@ -35,7 +36,7 @@ public class IHM implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-       // create();
+        //create();
 
         // read();
 
@@ -48,6 +49,12 @@ public class IHM implements CommandLineRunner {
         Integer age = sc.nextInt();
         System.out.println("Le mot est : " + test);
         System.out.println("Ton age est : " + age);*/
+        //displayAuthorAndBooks(1L);
+
+       //authorService.test();
+        bookService.test("Poesie");
+
+
 
     }
 
@@ -148,6 +155,32 @@ public class IHM implements CommandLineRunner {
         genreService.deleteById(genreId);
         System.out.println("Genre supprimé avec succès. Les associations de livres ont été mises à jour.");
     }
+
+
+    public void displayAuthorAndBooks(Long id){
+        Author author = authorService.findById(id);
+
+        System.out.println("Author : " + author.getName());
+
+        try{
+
+            Set<Book> books = author.getBooks();
+            if(books.isEmpty()){
+
+                System.out.println("Pas de livre");
+            }else{
+                books.forEach(book -> System.out.println("Livre " + book.getTitle()));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+
+
+    }
+
 
 
 }

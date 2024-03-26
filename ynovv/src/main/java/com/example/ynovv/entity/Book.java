@@ -40,8 +40,7 @@ public class Book {
         return "Book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", author=" + author +
-                ", genres=" + genres +
+               // ", genres=" + genres +
                 '}';
     }
 }
