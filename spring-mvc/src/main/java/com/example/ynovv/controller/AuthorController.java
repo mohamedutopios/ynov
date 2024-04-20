@@ -3,6 +3,7 @@ package com.example.ynovv.controller;
 
 import com.example.ynovv.entity.Author;
 import com.example.ynovv.service.AuthorService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class AuthorController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Author> getAuthorById(@PathVariable Long id){
+    public ResponseEntity<Author> getAuthorById(@PathVariable("idAuthor") Long id){
         Author author = authorService.findById(id);
         if(author != null){
             return ResponseEntity.status(HttpStatus.OK).body(author);
@@ -33,14 +34,18 @@ public class AuthorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Author> updateAuthor(@PathVariable Long id, @RequestBody Author author){
+    public ResponseEntity<Author> updateAuthor(@PathVariable Long id,@Valid @RequestBody Author author){
         Author author1 = authorService.update(id,author);
         return ResponseEntity.ok(author1);
     }
 
     @PostMapping
-    public Author createAuthor(@RequestBody Author author){
-        return authorService.save(author);
+    public ResponseEntity<Author> createAuthor(@Valid @RequestBody Author author){
+      try{
+        return ResponseEntity.ok(authorService.save(author));
+    }catch (Exception e){
+        return ResponseEntity.badRequest().build();
+    }
     }
 
     @DeleteMapping("/{id}")

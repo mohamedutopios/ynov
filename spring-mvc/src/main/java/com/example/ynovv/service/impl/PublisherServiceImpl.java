@@ -1,6 +1,8 @@
 package com.example.ynovv.service.impl;
 
+import com.example.ynovv.entity.Book;
 import com.example.ynovv.entity.Publisher;
+import com.example.ynovv.repository.BookRepository;
 import com.example.ynovv.repository.PublisherRepository;
 import com.example.ynovv.service.PublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,9 @@ public class PublisherServiceImpl implements PublisherService {
 
     @Autowired
     private PublisherRepository publisherRepository;
+
+    @Autowired
+    private BookRepository bookRepository;
 
     @Override
     public Publisher save(Publisher publisher) {
@@ -42,6 +47,12 @@ public class PublisherServiceImpl implements PublisherService {
     public void deleteById(Long id) {
         Publisher publisher = publisherRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Publisher not found with id " + id));
+        if (publisher.getBook() != null) {
+            Book book = bookRepository.findById(publisher.getBook().getId()).orElseThrow(()
+                    -> new RuntimeException("Book not found with id " + publisher.getBook().getId()));
+           book.setPublisher(null);
+           bookRepository.save(book);
+        }
         publisherRepository.delete(publisher);
     }
 }

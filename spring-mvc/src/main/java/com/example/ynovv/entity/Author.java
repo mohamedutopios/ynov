@@ -1,13 +1,8 @@
 package com.example.ynovv.entity;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
-
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,10 +18,13 @@ public class Author {
     private Long id;
 
     @Size(max = 15, message = "Le nom ne doit pas être supeieur à 15")
+    @NotBlank(message =" L'auteur doit avoir un nom")
+    @Size(min = 3,message = "Le nom doit être plus grand que 3")
     private String name;
 
     @NotBlank(message = "L'email ne peut être vide")
-    @Email
+    @Email(message = "Un email valide" )
+    @Pattern(regexp = ".*\\.com$", message = "L'email doit se terminer par .com")
     private String email;
 
     @JsonIgnore

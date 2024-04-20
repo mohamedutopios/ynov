@@ -1,5 +1,6 @@
 package com.example.ynovv.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -13,7 +14,7 @@ public class Publisher {
 
     private String name;
 
-
+    @JsonIgnore
     @OneToOne(mappedBy = "publisher" )
     private Book book;
 
