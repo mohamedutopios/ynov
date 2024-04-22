@@ -1,22 +1,27 @@
 package org.example.productTest;
 
 
+import org.example.enums.Categorie;
 import org.example.model.Produit;
-import org.example.service.ProduitService;
+import org.example.service.ProduitService2;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.NoSuchElementException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Test de la classe ProduitService")
-public class ProduitTest {
+public class ProduitTest2Arg {
 
-    private ProduitService produitService;
+    private ProduitService2 produitService;
 
     @BeforeEach
     void init() {
-        produitService = new ProduitService();
+        produitService = new ProduitService2();
     }
 
     @Test
@@ -27,12 +32,53 @@ public class ProduitTest {
 
         Assertions.assertAll("Vérification des propriétes des produist",
                 () -> assertEquals("chaise", produit.getName(), "Le nom de la chaise doit être correct"),
-                () -> assertEquals(23, produit.getPrice(), "le prix doit etre correct"),
+                () -> assertEquals(23, produit.getPrice(), "Le prix doit etre correct"),
                 () -> assertEquals(1, produit.getId(), "Id est egal 1"),
                 () -> assertEquals(2, produit1.getId(), "Id est egal 2"),
                 () -> Assertions.assertTrue(produit.getId() > 0, "le produit doit avoir un id"),
                 () -> Assertions.assertTrue(produit.getId() < produit1.getId()));
     }
+
+
+
+    @ParameterizedTest
+    @ValueSource(strings = {"chaise","table","bureau"})
+    void testAjoutProduitAvecNomDifferents(String nom){
+        Produit produit = produitService.ajouterProduit(nom, 23);
+        assertEquals(nom,produit.getName(),"Le nom du produit doit correspondre aux paramètres");
+    }
+
+
+    @ParameterizedTest
+    @EnumSource(Categorie.class)
+    void testeCreateProduitAvecCategorie(Categorie categorie){
+        Produit produit = switch (categorie) {
+            case ELECTRONIQUE -> new Produit("TELEVISION",45.0);
+            case MEUBLE -> new Produit("CHAISE",124.0);
+            case ALIMENTAIRE -> new Produit("POMME",2.0);
+
+        };
+        assertNotNull(produit);
+        assertTrue(produit.getId()>0,"Le produit doit avoir un id");
+        assertFalse(produit.getName().isEmpty(),"Le nom du produit ne doit pas être vide");
+    }
+
+
+
+
+    @Test
+    @DisplayName("Verification nom produit vide")
+    void testNomNotEmpty() {
+        assertThrows(IllegalArgumentException.class, () -> produitService.ajouterProduit("", 23),"Une exception doit être levée");
+    }
+
+
+    @DisplayName("Verification prix pas null ou négatif")
+    @RepeatedTest(value = 3, name = RepeatedTest.LONG_DISPLAY_NAME)
+    void testPriceNullOrUnderZero() {
+        assertThrows(IllegalArgumentException.class, () -> produitService.ajouterProduit("Chaise", -24),"Une exception doit être levée");
+    }
+
 
     @Test
     @DisplayName("Supprime un produit")
