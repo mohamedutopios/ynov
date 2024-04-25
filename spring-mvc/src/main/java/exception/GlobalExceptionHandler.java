@@ -14,8 +14,8 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object>handlerExceptionValidation(MethodArgumentNotValidException ex){
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach((error)->{
@@ -31,3 +31,16 @@ public class GlobalExceptionHandler {
 
 
 }
+
+/*
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Object> handleAllExceptions(Exception ex) {
+        Map<String, String> errors = new HashMap<>();
+        errors.put("error", ex.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
+*/
