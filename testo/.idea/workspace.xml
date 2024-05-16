@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="da515332-5167-46b0-873f-7ebe6bba2ee0" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2eAmtTJPnLZxYTLBQ3r7GECZjvn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Moham/Downloads/ynovv/spring-mvc",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="JUnit.ProduitTest.testTourverProduitParId">
+    <configuration name="ProduitTest.testCreateProduitAndIncr" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="test-unitaire" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.productTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.productTest" />
+      <option name="MAIN_CLASS_NAME" value="org.example.productTest.ProduitTest" />
+      <option name="METHOD_NAME" value="testCreateProduitAndIncr" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProduitTest.testDeleteProduut" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="test-unitaire" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.productTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.productTest" />
+      <option name="MAIN_CLASS_NAME" value="org.example.productTest.ProduitTest" />
+      <option name="METHOD_NAME" value="testDeleteProduut" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProduitTest.testTourverProduitParId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="test-unitaire" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.productTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.productTest" />
+      <option name="MAIN_CLASS_NAME" value="org.example.productTest.ProduitTest" />
+      <option name="METHOD_NAME" value="testTourverProduitParId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="YearTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="test-unitaire" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.exercice2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.exercice2" />
+      <option name="MAIN_CLASS_NAME" value="org.example.exercice2.YearTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="YearTest.testAnneeDivisiblePar4MaisPasPar100EstBissextile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="test-unitaire" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.exercice2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.exercice2" />
+      <option name="MAIN_CLASS_NAME" value="org.example.exercice2.YearTest" />
+      <option name="METHOD_NAME" value="testAnneeDivisiblePar4MaisPasPar100EstBissextile" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ProduitTest.testTourverProduitParId" />
+        <item itemvalue="JUnit.ProduitTest.testDeleteProduut" />
+        <item itemvalue="JUnit.ProduitTest.testCreateProduitAndIncr" />
+        <item itemvalue="JUnit.YearTest" />
+        <item itemvalue="JUnit.YearTest.testAnneeDivisiblePar4MaisPasPar100EstBissextile" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="da515332-5167-46b0-873f-7ebe6bba2ee0" name="Changes" comment="" />
+      <created>1711355971034</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711355971034</updated>
+      <workItem from="1711355972069" duration="23038000" />
+      <workItem from="1711443238963" duration="435000" />
+      <workItem from="1711721474540" duration="1103000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
