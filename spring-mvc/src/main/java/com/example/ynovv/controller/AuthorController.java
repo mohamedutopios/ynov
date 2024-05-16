@@ -7,9 +7,13 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/authors")
@@ -34,24 +38,40 @@ public class AuthorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Author> updateAuthor(@PathVariable Long id,@Valid @RequestBody Author author){
-        Author author1 = authorService.update(id,author);
-        return ResponseEntity.ok(author1);
+    public ResponseEntity<Object> updateAuthor(@PathVariable Long id,@Valid @RequestBody Author author, BindingResult bindingResult){
+        ResponseEntity<Object> errors = getObjectResponseEntity(bindingResult);
+        if (errors != null) return errors;
+
+        return ResponseEntity.ok(authorService.update(id,author));
     }
 
-    @PostMapping
-    public ResponseEntity<Author> createAuthor(@Valid @RequestBody Author author){
-      try{
+
+
+    @PostMapping("")
+    public ResponseEntity<Object> createAuthor(@Valid @RequestBody Author author, BindingResult bindingResult) {
+        ResponseEntity<Object> errors = getObjectResponseEntity(bindingResult);
+        if (errors != null) return errors;
         return ResponseEntity.ok(authorService.save(author));
-    }catch (Exception e){
-        return ResponseEntity.badRequest().build();
-    }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAuthor(@PathVariable Long id){
         authorService.deleteById(id);
         return ResponseEntity.ok().build();
+    }
+
+
+    private ResponseEntity<Object> getObjectResponseEntity(BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            Map<String, String> errors = new HashMap<>();
+            bindingResult.getAllErrors().forEach((error) -> {
+                String fieldName = ((FieldError) error).getField();
+                String errorMessage = error.getDefaultMessage();
+                errors.put(fieldName, errorMessage);
+            });
+            return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+        }
+        return null;
     }
 
 }

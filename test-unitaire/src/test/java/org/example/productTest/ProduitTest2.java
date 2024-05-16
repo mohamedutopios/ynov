@@ -3,20 +3,22 @@ package org.example.productTest;
 
 import org.example.model.Produit;
 import org.example.service.ProduitService;
+import org.example.service.ProduitService2;
 import org.junit.jupiter.api.*;
 
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DisplayName("Test de la classe ProduitService")
-public class ProduitTest {
+public class ProduitTest2 {
 
-    private ProduitService produitService;
+    private ProduitService2 produitService;
 
     @BeforeEach
     void init() {
-        produitService = new ProduitService();
+        produitService = new ProduitService2();
     }
 
     @Test
@@ -27,12 +29,26 @@ public class ProduitTest {
 
         Assertions.assertAll("Vérification des propriétes des produist",
                 () -> assertEquals("chaise", produit.getName(), "Le nom de la chaise doit être correct"),
-                () -> assertEquals(23, produit.getPrice(), "le prix doit etre correct"),
+                () -> assertEquals(23, produit.getPrice(), "Le prix doit etre correct"),
                 () -> assertEquals(1, produit.getId(), "Id est egal 1"),
                 () -> assertEquals(2, produit1.getId(), "Id est egal 2"),
                 () -> Assertions.assertTrue(produit.getId() > 0, "le produit doit avoir un id"),
                 () -> Assertions.assertTrue(produit.getId() < produit1.getId()));
     }
+
+
+    @Test
+    @DisplayName("Verification nom produit vide")
+    void testNomNotEmpty() {
+        assertThrows(IllegalArgumentException.class, () -> produitService.ajouterProduit("", 23),"Une exception doit être levée");
+    }
+
+    @Test
+    @DisplayName("Verification prix pas null ou négatif")
+    void testPriceNullOrUnderZero() {
+        assertThrows(IllegalArgumentException.class, () -> produitService.ajouterProduit("Chaise", -24),"Une exception doit être levée");
+    }
+
 
     @Test
     @DisplayName("Supprime un produit")
@@ -46,7 +62,7 @@ public class ProduitTest {
 
     @Test
     @DisplayName("Trouver un produit par son id")
-   // @Tag("Modification")
+    @Tag("Modification")
    // @Disabled("Pas à tester")
     void testTrouverProduitParId(){
         Produit produit = produitService.ajouterProduit("Iphone",1458);
@@ -88,3 +104,6 @@ public class ProduitTest {
 
 
 }
+
+// mvn test -D groups=Recuperation -Dtest=ProductTestTag
+// mvn test -D groups=Modification -Dtest=ProductTestTag
