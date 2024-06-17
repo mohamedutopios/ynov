@@ -13,12 +13,8 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    UserRepository userRepository;
-
     @Autowired
-    UserService(UserRepository userRepository){
-    this.userRepository = userRepository;
-    }
+    UserRepository userRepository;
 
 
     public List<User> getAllUsers() {
@@ -55,4 +51,7 @@ public class UserService {
 
     }
 
+    public void deleteAllUsers() {
+        userRepository.deleteAll();
+    }
 }
