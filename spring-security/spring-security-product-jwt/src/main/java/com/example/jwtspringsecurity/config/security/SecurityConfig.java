@@ -21,6 +21,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
@@ -28,17 +34,14 @@ public class SecurityConfig {
 
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
-        return  new BCryptPasswordEncoder();
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
     public JwtRequestFilter jwtRequestFilter() {
         return new JwtRequestFilter();
     }
-
-    /*@Autowired
-    public UserService userService;*/
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
@@ -49,31 +52,28 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors ->cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/products").hasRole("ADMIN")
+                        .requestMatchers("/api/products").hasAnyRole("USER","ADMIN")
+                        .requestMatchers("/api/products/admin/create").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 ).addFilterBefore(jwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);
-               // .httpBasic(Customizer.withDefaults());
-               // .formLogin(Customizer.withDefaults());
         return http.build();
     }
 
-    /*@Bean
-    public UserDetailsService inMemoryUserDetailsService(){
-        UserDetails user = User.withUsername("user")
-                .password(passwordEncoder().encode("password")).build();
 
-        UserDetails user1= User.withUsername("admin")
-                .password(passwordEncoder().encode("admin")).roles("ADMIN").build();
-
-        return new InMemoryUserDetailsManager(user,user1);
-
-    }*/
-
-
-
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOriginPatterns(Collections.singletonList("http://localhost:3001"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 
 
 }
