@@ -55,7 +55,7 @@ public class JwtTokenProvider {
             Jwts.parserBuilder()
                     .setSigningKey(getSigninKey())
                     .build()
-                    .parseClaimsJwt(token);
+                    .parseClaimsJws(token);
             return true;
         }catch (Exception e){
             throw new AuthenticationCredentialsNotFoundException("Jwt was incorrect");
@@ -70,7 +70,7 @@ public class JwtTokenProvider {
                 .parserBuilder()
                 .setSigningKey(getSigninKey())
                 .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody();
 
        return claims.getSubject();
